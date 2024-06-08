@@ -8,10 +8,11 @@ export default function MegaSummarizer() {
     event.preventDefault();
 
     const text = event.currentTarget.querySelector("textarea")?.value;
+    const result = document.getElementById("result");
 
     try {
       const response = await axios.post("/api/summarize", { text });
-      console.log(response);
+      result!.textContent = response.data.summary;
     } catch (error) {
       console.error("Failed to summarize text", error);
     }
@@ -21,7 +22,7 @@ export default function MegaSummarizer() {
     <main className="section">
       <div className="content">
         <h1>Mega Summarizer</h1>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className="mb-6">
           <textarea
             className="textarea mb-4"
             placeholder="Boring text goes here..."
@@ -31,6 +32,10 @@ export default function MegaSummarizer() {
             Summarize
           </button>
         </form>
+        <div className="is-flex is-align-items-center">
+          <h2 className="mr-3 mb-0">Result:</h2>
+          <p id="result" className="tag is-primary is-light is-large"></p>
+        </div>
       </div>
     </main>
   );
