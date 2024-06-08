@@ -19,8 +19,8 @@ export default async function handler(
           content: generatePrompt(text),
         },
       ],
-      max_tokens: 200,
-      temperature: 1.6,
+      max_tokens: 400,
+      temperature: 1.5,
     });
 
     const summary = gptResponse.choices[0].message.content?.trim();
