@@ -20,7 +20,7 @@ export default async function handler(
         },
       ],
       max_tokens: 400,
-      temperature: 0.7,
+      temperature: 1.0,
     });
 
     const summary = gptResponse.choices[0].message.content?.trim();
