@@ -12,7 +12,9 @@ export default function MegaSummarizer() {
 
     try {
       const response = await axios.post("/api/summarize", { text });
-      result!.textContent = response.data.summary;
+      const summary = response.data.summary.replace(/[",.'!:?]/g, "");
+
+      result!.textContent = summary;
     } catch (error) {
       console.error("Failed to summarize text", error);
     }
