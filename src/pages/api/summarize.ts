@@ -1,5 +1,6 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import OpenAI from "openai";
+import generatePrompt from "./prompt";
 
 const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 
@@ -15,10 +16,11 @@ export default async function handler(
       messages: [
         {
           role: "system",
-          content: `Summarize the following text in exactly two words: ${text}`,
+          content: generatePrompt(text),
         },
       ],
       max_tokens: 200,
+      temperature: 1.6,
     });
 
     const summary = gptResponse.choices[0].message.content?.trim();
