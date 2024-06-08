@@ -1,15 +1,16 @@
 "use client";
 
 import axios from "axios";
-import { FormEvent } from "react";
+import { FormEvent, useState } from "react";
+import SpeechToTextButton from "../speech-to-text-button/speech-to-text-button.component";
 
 export default function InputTextForm() {
+  const [inputText, setInputText] = useState("");
+
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    const text = event.currentTarget.querySelector("input")?.value || "";
-
-    const summary = await fetchSummary(text);
+    const summary = await fetchSummary(inputText);
     fillResultContent(summary);
   };
 
@@ -24,13 +25,10 @@ export default function InputTextForm() {
           className="input is-flex-grow-3 mr-3"
           placeholder="Write your story here..."
           aria-label="Write your story here"
+          value={inputText}
+          onChange={(e) => setInputText(e.target.value)}
         />
-        <button
-          className="button is-primary is-rounded is-flex-grow-1 mr-3"
-          type="button"
-        >
-          <i className="fas fa-microphone"></i>
-        </button>
+        <SpeechToTextButton inputTextState={{ inputText, setInputText }} />
         <button
           className="button is-primary is-rounded is-flex-grow-1"
           type="submit"
