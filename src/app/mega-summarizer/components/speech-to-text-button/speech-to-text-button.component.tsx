@@ -1,5 +1,6 @@
 import { StateObject } from "@/types/helper-types";
 import useSpeechToText from "./use-speech-to-text";
+import RoundButton from "../round-button/round-button.component";
 
 interface SpeechToTextButtonProps {
   inputTextState: StateObject<"inputText", string>;
@@ -14,12 +15,12 @@ export default function SpeechToTextButton({
     });
 
   return (
-    <button
-      className={`button ${isListening ? "is-danger" : "is-primary"} is-rounded is-flex-grow-1 mr-3`}
+    <RoundButton
+      customClassName={`${isListening ? "is-danger" : "is-primary"} is-flex-grow-1 mr-2`}
       type="button"
       onClick={isListening ? handleSpeechToTextStop : handleSpeechToTextStart}
     >
       <i className="fas fa-microphone"></i>
-    </button>
+    </RoundButton>
   );
 }

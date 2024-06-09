@@ -3,6 +3,7 @@
 import axios from "axios";
 import { FormEvent, useState } from "react";
 import SpeechToTextButton from "../speech-to-text-button/speech-to-text-button.component";
+import RoundButton from "../round-button/round-button.component";
 
 export default function InputTextForm() {
   const [inputText, setInputText] = useState("");
@@ -29,12 +30,9 @@ export default function InputTextForm() {
           onChange={(e) => setInputText(e.target.value)}
         />
         <SpeechToTextButton inputTextState={{ inputText, setInputText }} />
-        <button
-          className="button is-primary is-rounded is-flex-grow-1"
-          type="submit"
-        >
+        <RoundButton type="submit" customClassName="is-flex-grow-1">
           <i className="fas fa-arrow-right"></i>
-        </button>
+        </RoundButton>
       </form>
     </div>
   );
