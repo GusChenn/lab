@@ -1,3 +1,5 @@
+"use client";
+
 import { useState } from "react";
 import { SummaryContext } from "../hooks/use-summary-context";
 

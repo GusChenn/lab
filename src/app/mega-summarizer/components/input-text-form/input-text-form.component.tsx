@@ -1,3 +1,5 @@
+"use client";
+
 import { FormEvent, useState } from "react";
 import SpeechToTextButton from "../speech-to-text-button/speech-to-text-button.component";
 import RoundButton from "../round-button/round-button.component";
