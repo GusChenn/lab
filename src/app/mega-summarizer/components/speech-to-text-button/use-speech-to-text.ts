@@ -1,6 +1,6 @@
 import React from "react";
 
-interface Parameters {
+interface Params {
   containerStateSetterFunction: React.Dispatch<React.SetStateAction<string>>;
 }
 
@@ -10,7 +10,7 @@ interface Return {
   isListening: boolean;
 }
 
-type UseSpeechToText = ({ containerStateSetterFunction }: Parameters) => Return;
+type UseSpeechToText = ({ containerStateSetterFunction }: Params) => Return;
 
 const useSpeechToText: UseSpeechToText = ({ containerStateSetterFunction }) => {
   const [isListening, setIsListening] = React.useState(false);

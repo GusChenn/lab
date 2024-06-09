@@ -1,18 +1,20 @@
-"use client";
-
-import axios from "axios";
 import { FormEvent, useState } from "react";
 import SpeechToTextButton from "../speech-to-text-button/speech-to-text-button.component";
 import RoundButton from "../round-button/round-button.component";
+import { useSummaryContext } from "../../hooks/use-summary-context";
+import useSummaryFetcher from "./use-summary-fetcher";
 
 export default function InputTextForm() {
   const [inputText, setInputText] = useState("");
+  const { setSummary } = useSummaryContext();
+  const { fetchSummary } = useSummaryFetcher();
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     const summary = await fetchSummary(inputText);
-    fillResultContent(summary);
+
+    setSummary?.(summary);
   };
 
   return (
@@ -37,20 +39,3 @@ export default function InputTextForm() {
     </div>
   );
 }
-
-const fetchSummary = async (text: string) => {
-  try {
-    const response = await axios.post("/api/summarize", { text });
-    const summary = response.data.summary.replace(/[",.'!:?()]/g, "");
-
-    return summary;
-  } catch (error) {
-    console.error("Failed to summarize text", error);
-  }
-};
-
-const fillResultContent = async (summary: string) => {
-  const resultElement = document.getElementById("result");
-
-  resultElement!.textContent = summary;
-};
