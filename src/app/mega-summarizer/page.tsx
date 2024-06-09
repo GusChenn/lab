@@ -1,44 +1,22 @@
-"use client";
-
-import axios from "axios";
-import { FormEvent } from "react";
+import InputTextForm from "./components/input-text-form/input-text-form.component";
+import { SummaryProvider } from "./contexts/summary-context-provider";
+import { useSummaryContext } from "./hooks/use-summary-context";
 
 export default function MegaSummarizer() {
-  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-
-    const text = event.currentTarget.querySelector("textarea")?.value;
-    const result = document.getElementById("result");
-
-    try {
-      const response = await axios.post("/api/summarize", { text });
-      const summary = response.data.summary.replace(/[",.'!:?()]/g, "");
-
-      result!.textContent = summary;
-    } catch (error) {
-      console.error("Failed to summarize text", error);
-    }
-  };
+  const { summary } = useSummaryContext();
 
   return (
-    <main className="section">
-      <div className="content">
-        <h1>Mega Summarizer</h1>
-        <form onSubmit={handleSubmit} className="mb-6">
-          <textarea
-            className="textarea mb-4"
-            placeholder="Boring text goes here..."
-            aria-label="Boring text goes here"
-          ></textarea>
-          <button className="button is-primary" type="submit">
-            Summarize
-          </button>
-        </form>
-        <div className="is-flex is-align-items-center">
-          <h2 className="mr-3 mb-0">Result:</h2>
-          <p id="result" className="tag is-primary is-light is-large"></p>
+    <SummaryProvider>
+      <main className="section">
+        <div className="content">
+          <h1>Mega Summarizer</h1>
+          <InputTextForm />
+          <div className="is-flex is-align-items-center">
+            <h2 className="mr-3 mb-0">Result:</h2>
+            <p className="tag is-primary is-light is-large">{summary}</p>
+          </div>
         </div>
-      </div>
-    </main>
+      </main>
+    </SummaryProvider>
   );
 }
