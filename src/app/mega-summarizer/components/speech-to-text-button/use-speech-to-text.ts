@@ -22,10 +22,6 @@ const useSpeechToText: UseSpeechToText = ({ containerStateSetterFunction }) => {
 
   recognition.lang = "pt-BR";
 
-  recognition.onstart = function () {
-    setIsListening(true);
-  };
-
   recognition.onresult = function (event) {
     const transcript = event.results[0][0].transcript;
     containerStateSetterFunction(transcript);
@@ -37,10 +33,12 @@ const useSpeechToText: UseSpeechToText = ({ containerStateSetterFunction }) => {
   };
 
   const handleSpeechToTextStart = (): void => {
+    setIsListening(true);
     recognition.start();
   };
 
   const handleSpeechToTextStop = (): void => {
+    setIsListening(false);
     recognition.stop();
   };
 
