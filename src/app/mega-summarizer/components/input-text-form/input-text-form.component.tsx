@@ -8,15 +8,22 @@ import useSummaryFetcher from "./use-summary-fetcher";
 
 export default function InputTextForm() {
   const [inputText, setInputText] = useState("");
+  const [error, setError] = useState<string | null>(null);
   const { setSummary } = useSummaryContext();
   const { fetchSummary } = useSummaryFetcher();
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    const summary = await fetchSummary(inputText);
+    const response = await fetchSummary(inputText);
 
-    setSummary?.(summary);
+    if (response.error) {
+      setError(response.error);
+      return;
+    }
+
+    setError(null);
+    setSummary?.(response.summary);
   };
 
   return (
@@ -38,6 +45,11 @@ export default function InputTextForm() {
           <i className="fas fa-arrow-right"></i>
         </RoundButton>
       </form>
+      {error && (
+        <p className="has-text-danger mt-2 is-size-7 is-family-primary">
+          {error}
+        </p>
+      )}
     </div>
   );
 }
