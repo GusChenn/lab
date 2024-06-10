@@ -1,7 +1,7 @@
 import axios from "axios";
 
 interface Return {
-  fetchSummary: (text: string) => Promise<string>;
+  fetchSummary: (text: string) => Promise<any>;
 }
 
 type UseSummaryFetcher = () => Return;
@@ -10,13 +10,20 @@ const useSummaryFetcher: UseSummaryFetcher = () => {
   const fetchSummary = async (text: string) => {
     try {
       const response = await axios.post("/api/summarize", { text });
-      const summary = response.data.summary.replace(/[",.'!:?()]/g, "");
 
-      return summary;
-    } catch (error) {
-      console.error("Failed to summarize text", error);
+      const summary = response.data.summary;
 
-      return "";
+      return {
+        summary,
+        error: null,
+      };
+    } catch (error: any) {
+      console.error(error.response.data.error.message);
+
+      return {
+        summary: "",
+        error: error.response.data.error.message,
+      };
     }
   };
 

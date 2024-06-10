@@ -25,9 +25,18 @@ export default async function handler(
 
     const summary = gptResponse.choices[0].message.content?.trim();
 
-    res.status(200).json({ summary });
-  } catch (error) {
-    console.error("Failed to summarize text", error);
-    res.status(500).json({ error: "Failed to summarize text" });
+    const cleanedSummary =
+      summary?.toLowerCase().replace(/[^a-z\s]/gi, "") || "";
+
+    if (cleanedSummary!.split(" ").length != 5) {
+      throw new Error(
+        "There was a problem while generating the summary. Please try again. Sorry about that",
+      );
+    }
+
+    res.status(200).json({ summary: cleanedSummary });
+  } catch (error: any) {
+    console.error("Failed to summarize text: ", error.message);
+    res.status(500).json({ error: { message: error.message } });
   }
 }
