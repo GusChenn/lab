@@ -8,8 +8,8 @@ export default function WordsOfTheDayDisplay() {
       <div className="content">
         <h1>Words of the Day:</h1>
         <ul>
-          {wordsOfTheDay.map((word, index) => (
-            <li key={index}>{word}</li>
+          {wordsOfTheDay.map((word) => (
+            <li key={word}>{word}</li>
           ))}
         </ul>
       </div>
