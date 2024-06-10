@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import OpenAI from "openai";
-import generatePrompt from "./prompt";
+import generatePrompt from "../../../prompts/summarizer-prompt";
 
 const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 
