@@ -1,12 +1,26 @@
 import { useSummaryContext } from "../../hooks/use-summary-context";
+import { FiveStringArray } from "../../types/global-types";
+import FiveSlotDisplay from "../five-slot-display/five-slot-display.component";
 
 export default function SummaryDisplay() {
   const { summary } = useSummaryContext();
 
-  return (
-    <div className="is-flex is-align-items-center">
-      <h2 className="mr-3 mb-0">Result:</h2>
-      <p className="tag is-primary is-light is-large">{summary}</p>
-    </div>
-  );
+  const classesArray = Array(5).fill(
+    "tag is-large is-light is-flex-grow-1",
+  ) as FiveStringArray;
+
+  if (summary.length > 0) {
+    return (
+      <div className="container is-flex is-flex-direction-column is-align-items-center mb-6 mt-6">
+        {
+          <FiveSlotDisplay
+            words={summary as FiveStringArray}
+            customClasses={classesArray}
+          />
+        }
+      </div>
+    );
+  }
+
+  return null;
 }

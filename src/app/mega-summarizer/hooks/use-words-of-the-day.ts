@@ -23,7 +23,6 @@ const useWordsOfTheDay: UseWordsOfTheDay = () => {
 
         const wordsOfTheDay = response.data.words;
         setWordsOfTheDay(wordsOfTheDay);
-        console.log(wordsOfTheDay);
       } catch (error) {
         console.error("Failed to fetch random words: ", error);
         setWordsOfTheDay(["error", "error", "error", "error", "error"]);

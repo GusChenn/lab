@@ -8,13 +8,13 @@ export type Summary = Uninitialized<FiveStringArray>;
 export type WordsOfTheDay = FiveStringArray;
 
 interface SummaryContextType {
-  summary: Summary | undefined;
+  summary: Summary;
   setSummary: ((summary: Summary) => void) | undefined;
   wordsOfTheDay: WordsOfTheDay;
 }
 
 export const SummaryContext = createContext<SummaryContextType | undefined>({
-  summary: undefined,
+  summary: [],
   setSummary: undefined,
   wordsOfTheDay: ["", "", "", "", ""],
 });

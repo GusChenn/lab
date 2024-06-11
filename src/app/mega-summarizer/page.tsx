@@ -12,8 +12,8 @@ export default function MegaSummarizer() {
         <div className="content is-flex is-flex-direction-column is-align-items-center">
           <h1>Mega Summarizer</h1>
           <WordsOfTheDayDisplay />
-          <InputTextForm />
           <SummaryDisplay />
+          <InputTextForm />
         </div>
       </main>
     </SummaryProvider>
