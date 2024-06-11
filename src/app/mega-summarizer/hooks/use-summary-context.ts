@@ -5,11 +5,13 @@ import { createContext, useContext } from "react";
 interface SummaryContextType {
   summary: string | undefined;
   setSummary: ((summary: string) => void) | undefined;
+  wordsOfTheDay: string[];
 }
 
 export const SummaryContext = createContext<SummaryContextType | undefined>({
   summary: undefined,
   setSummary: undefined,
+  wordsOfTheDay: [],
 });
 
 export function useSummaryContext() {

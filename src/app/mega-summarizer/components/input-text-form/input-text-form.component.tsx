@@ -27,8 +27,8 @@ export default function InputTextForm() {
   };
 
   return (
-    <div className="section container mb-5">
-      <div className="box box-radius">
+    <div className="container mb-6">
+      <div className="box">
         <form
           onSubmit={handleSubmit}
           className="is-flex is-flex-wrap-nowrap is-align-items-center"
@@ -43,7 +43,9 @@ export default function InputTextForm() {
           />
           <SpeechToTextButton inputTextState={{ inputText, setInputText }} />
           <RoundButton type="submit" customClassName="is-flex-grow-1">
-            <i className="fas fa-arrow-right"></i>
+            <span className="icon">
+              <i className="fas fa-arrow-right"></i>
+            </span>
           </RoundButton>
         </form>
         {error && (

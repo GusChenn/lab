@@ -20,7 +20,9 @@ export default function SpeechToTextButton({
       type="button"
       onClick={isListening ? handleSpeechToTextStop : handleSpeechToTextStart}
     >
-      <i className="fas fa-microphone"></i>
+      <span className="icon">
+        <i className="fas fa-microphone"></i>
+      </span>
     </RoundButton>
   );
 }

@@ -1,10 +1,10 @@
-import useWordsOfTheDay from "./use-words-of-the-day";
+import { useSummaryContext } from "../../hooks/use-summary-context";
 
 export default function WordsOfTheDayDisplay() {
-  const { wordsOfTheDay } = useWordsOfTheDay();
+  const { wordsOfTheDay } = useSummaryContext();
 
   return (
-    <section className="section container is-flex is-flex-direction-column is-align-items-center">
+    <section className="container is-flex is-flex-direction-column is-align-items-center mb-6 mt-6">
       <h1 className="mb-6">Words of the Day:</h1>
       <div className="container grid">
         {wordsOfTheDay.map((word) => (
