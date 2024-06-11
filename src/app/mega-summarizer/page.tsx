@@ -9,7 +9,7 @@ export default function MegaSummarizer() {
   return (
     <SummaryProvider>
       <main className="section">
-        <div className="content">
+        <div className="content is-flex is-flex-direction-column is-align-items-center">
           <h1>Mega Summarizer</h1>
           <WordsOfTheDayDisplay />
           <InputTextForm />

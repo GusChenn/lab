@@ -27,29 +27,31 @@ export default function InputTextForm() {
   };
 
   return (
-    <div className="box box-radius">
-      <form
-        onSubmit={handleSubmit}
-        className="is-flex is-flex-wrap-nowrap is-align-items-center"
-      >
-        <input
-          type="text"
-          className="input is-flex-grow-3 mr-3"
-          placeholder="Write your story here..."
-          aria-label="Write your story here"
-          value={inputText}
-          onChange={(e) => setInputText(e.target.value)}
-        />
-        <SpeechToTextButton inputTextState={{ inputText, setInputText }} />
-        <RoundButton type="submit" customClassName="is-flex-grow-1">
-          <i className="fas fa-arrow-right"></i>
-        </RoundButton>
-      </form>
-      {error && (
-        <p className="has-text-danger mt-2 is-size-7 is-family-primary">
-          {error}
-        </p>
-      )}
+    <div className="section container mb-5">
+      <div className="box box-radius">
+        <form
+          onSubmit={handleSubmit}
+          className="is-flex is-flex-wrap-nowrap is-align-items-center"
+        >
+          <input
+            type="text"
+            className="input is-flex-grow-3 mr-3"
+            placeholder="Write your story here..."
+            aria-label="Write your story here"
+            value={inputText}
+            onChange={(e) => setInputText(e.target.value)}
+          />
+          <SpeechToTextButton inputTextState={{ inputText, setInputText }} />
+          <RoundButton type="submit" customClassName="is-flex-grow-1">
+            <i className="fas fa-arrow-right"></i>
+          </RoundButton>
+        </form>
+        {error && (
+          <p className="has-text-danger mt-2 is-size-7 is-family-primary">
+            {error}
+          </p>
+        )}
+      </div>
     </div>
   );
 }
