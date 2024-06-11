@@ -1,17 +1,22 @@
 "use client";
 
+import { Uninitialized } from "@/types/helper-types";
 import { createContext, useContext } from "react";
+import { FiveStringArray } from "../types/global-types";
+
+export type Summary = Uninitialized<FiveStringArray>;
+export type WordsOfTheDay = FiveStringArray;
 
 interface SummaryContextType {
-  summary: string | undefined;
-  setSummary: ((summary: string) => void) | undefined;
-  wordsOfTheDay: string[];
+  summary: Summary | undefined;
+  setSummary: ((summary: Summary) => void) | undefined;
+  wordsOfTheDay: WordsOfTheDay;
 }
 
 export const SummaryContext = createContext<SummaryContextType | undefined>({
   summary: undefined,
   setSummary: undefined,
-  wordsOfTheDay: [],
+  wordsOfTheDay: ["", "", "", "", ""],
 });
 
 export function useSummaryContext() {

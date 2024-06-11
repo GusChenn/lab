@@ -5,3 +5,5 @@ export type StateObject<StateName extends string, StateType> = {
     React.SetStateAction<StateType>
   >;
 };
+
+export type Uninitialized<T> = T extends any[] ? [] | T : null | T;

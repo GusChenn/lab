@@ -26,9 +26,12 @@ export default async function handler(
     const summary = gptResponse.choices[0].message.content?.trim();
 
     const cleanedSummary =
-      summary?.toLowerCase().replace(/[^a-z\s]/gi, "") || "";
+      summary
+        ?.toLowerCase()
+        .replace(/[^a-z\s]/gi, "")
+        .split(" ") || "";
 
-    if (cleanedSummary!.split(" ").length != 5) {
+    if (cleanedSummary.length != 5) {
       throw new Error(
         "There was a problem while generating the summary. Please try again. Sorry about that",
       );
