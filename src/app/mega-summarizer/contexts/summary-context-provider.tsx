@@ -1,11 +1,11 @@
 "use client";
 
 import { useState } from "react";
-import { SummaryContext } from "../hooks/use-summary-context";
+import { Summary, SummaryContext } from "../hooks/use-summary-context";
 import useWordsOfTheDay from "../hooks/use-words-of-the-day";
 
 export function SummaryProvider({ children }: { children: React.ReactNode }) {
-  const [summary, setSummary] = useState("");
+  const [summary, setSummary] = useState<Summary>([]);
   const { wordsOfTheDay } = useWordsOfTheDay();
 
   return (

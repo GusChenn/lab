@@ -9,7 +9,7 @@ import useSummaryFetcher from "./use-summary-fetcher";
 export default function InputTextForm() {
   const [inputText, setInputText] = useState("");
   const [error, setError] = useState<string | null>(null);
-  const { setSummary } = useSummaryContext();
+  const { setSummary, wordsOfTheDay } = useSummaryContext();
   const { fetchSummary } = useSummaryFetcher();
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
@@ -24,6 +24,21 @@ export default function InputTextForm() {
 
     setError(null);
     setSummary?.(response.summary);
+
+    response.summary.forEach((word: string) => {
+      if (wordsOfTheDay.includes(word)) {
+        // Select all divs in the page with the class "tag"
+        const tags = document.querySelectorAll(".tag");
+
+        // Iterate over these divs and add the class "is-primary" to those whose content is the matching word
+        tags.forEach((tag) => {
+          if (tag.textContent === word) {
+            tag.classList.remove("is-danger");
+            tag.classList.add("is-primary");
+          }
+        });
+      }
+    });
   };
 
   return (

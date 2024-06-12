@@ -2,15 +2,19 @@
 
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { WordsOfTheDay, useSummaryContext } from "./use-summary-context";
 
 interface Return {
-  wordsOfTheDay: string[];
+  wordsOfTheDay: WordsOfTheDay;
 }
 
 type UseWordsOfTheDay = () => Return;
 
 const useWordsOfTheDay: UseWordsOfTheDay = () => {
-  const [wordsOfTheDay, setWordsOfTheDay] = useState<string[]>([]);
+  const { wordsOfTheDay: uninitializedWordsOfTheDay } = useSummaryContext();
+  const [wordsOfTheDay, setWordsOfTheDay] = useState<WordsOfTheDay>(
+    uninitializedWordsOfTheDay,
+  );
 
   useEffect(() => {
     const fetchWordsOfTheDay = async () => {
